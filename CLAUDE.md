@@ -7,9 +7,31 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 After cloning, install Claude Code skills to enable AI assistance:
 
 ```bash
+# Angular skills
 npx skills add angular/angular@angular-developer -y
 npx skills add angular/skills@angular-new-app -y
+
+# Figma skills
+npx skills add figma/mcp-server-guide@figma-implement-design -y
+npx skills add figma/mcp-server-guide@figma-use -y
+npx skills add figma/mcp-server-guide@figma-code-connect-components -y
 ```
+
+Or sync all skills at once after pulling:
+
+```bash
+npx skills install
+```
+
+### Figma MCP
+
+The Figma MCP plugin is required to use Figma skills. Install it once globally:
+
+```bash
+claude plugin install figma@claude-plugins-official
+```
+
+Then authenticate: run `/mcp` in Claude Code → select `figma` → **Authenticate**.
 
 ## Commands
 

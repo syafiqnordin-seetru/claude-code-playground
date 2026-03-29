@@ -10,6 +10,21 @@
       "source": "angular/skills",
       "sourceType": "github",
       "computedHash": "8f955e71e38ae6f804ca677d441a811bfb0be638fa33a7210ae573d8e9e49de3"
+    },
+    "figma-code-connect-components": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "99db6b0ad778e029b09dd5375b936e7b7879104335d6c8fadcb5a74ab41d7f4f"
+    },
+    "figma-implement-design": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "4854d7c6e2d4f6e6e3e31515adfb47da8cfceebb554bec6799712803ab1b6035"
+    },
+    "figma-use": {
+      "source": "figma/mcp-server-guide",
+      "sourceType": "github",
+      "computedHash": "c9b18ec19763bee48a5656ae858474ff89a64703e88ab08789550be2fe3637b7"
     }
   }
 }
