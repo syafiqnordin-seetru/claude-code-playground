@@ -157,6 +157,7 @@ Before marking complete, validate the final UI against the Figma screenshot.
 ### Code Quality
 
 - Avoid hardcoded values - extract to constants or design tokens
+- **Never hardcode color values in SCSS files.** All colors must use variables from `src/styles/_colors.scss`. If a Figma color has no existing variable, add it there first, then reference the variable in the component SCSS.
 - Keep components composable and reusable
 - Add TypeScript types for component props
 - Include JSDoc comments for exported components

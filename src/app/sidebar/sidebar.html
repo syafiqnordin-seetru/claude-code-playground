@@ -1,17 +1,27 @@
-<aside class="sidebar position-relative h-100 overflow-hidden flex-shrink-0">
-
+<aside
+  class="sidebar position-relative h-100 overflow-hidden flex-shrink-0"
+  [class.is-expanded]="isExpanded()"
+  (mouseenter)="isExpanded.set(true)"
+  (mouseleave)="isExpanded.set(false)"
+>
   <!-- Decorative background pattern -->
   <div class="sidebar__pattern position-absolute bottom-0 end-0 overflow-hidden" aria-hidden="true">
     <img src="assets/sidebar/pattern.png" alt="" />
   </div>
 
   <nav class="sidebar__menu position-absolute d-flex flex-column align-items-start top-0 gap-3">
-
     <!-- Logo + divider -->
-    <a class="sidebar__logo-link d-flex align-items-start w-100 flex-shrink-0 text-decoration-none" aria-label="PETRONAS home">
+    <a
+      class="sidebar__logo-link d-flex align-items-start w-100 flex-shrink-0 text-decoration-none"
+      aria-label="PETRONAS home"
+    >
       <div class="sidebar__logo position-relative flex-shrink-0">
         <div class="sidebar__logo-inner position-absolute">
-          <img src="assets/sidebar/logo-petronas.svg" alt="PETRONAS" class="position-absolute d-block w-100 h-100" />
+          <img
+            src="assets/sidebar/logo-petronas.svg"
+            alt="PETRONAS"
+            class="position-absolute d-block w-100 h-100"
+          />
         </div>
       </div>
     </a>
@@ -19,25 +29,58 @@
     <!-- Navigation items -->
     <ul class="sidebar__nav-list d-flex flex-column align-items-start w-100 list-unstyled m-0 p-0">
       @for (item of navItems; track item.name) {
-        <li>
+        <li class="w-100">
           @if (!item.isProduct) {
-            <a class="sidebar__nav-item d-flex align-items-center justify-content-center flex-shrink-0 text-decoration-none" [href]="item.href" target="_self" [attr.aria-label]="item.name">
-              <img [src]="item.icon" [alt]="item.name" width="24" height="24" />
+            <a
+              class="sidebar__nav-item d-flex align-items-center flex-shrink-0 text-decoration-none"
+              [class.justify-content-center]="!isExpanded()"
+              [class.is-active]="selectedItem() === item.name"
+              [href]="item.href"
+              target="_self"
+              [attr.aria-label]="item.name"
+              (click)="selectedItem.set(item.name); $event.preventDefault()"
+            >
+              <div
+                class="sidebar__nav-icon d-flex align-items-center justify-content-center flex-shrink-0"
+              >
+                <img
+                  [src]="(selectedItem() === item.name && item.iconActive) ? item.iconActive : item.icon"
+                  [alt]="item.name"
+                  width="24"
+                  height="24"
+                />
+              </div>
+              <span class="sidebar__nav-label">{{ item.label }}</span>
             </a>
           } @else {
-            <div class="sidebar__nav-item d-flex align-items-center justify-content-center flex-shrink-0" role="button" [attr.aria-label]="item.name">
-              <div class="sidebar__product-icon position-relative flex-shrink-0">
-                @for (part of productIconParts; track part.cls) {
-                  <div class="icon-part-wrapper position-absolute" [ngClass]="part.cls">
-                    <img [src]="part.src" alt="" class="icon-part-img position-absolute d-block w-100 h-100" />
-                  </div>
-                }
+            <div
+              class="sidebar__nav-item d-flex align-items-center flex-shrink-0"
+              [class.justify-content-center]="!isExpanded()"
+              [class.is-active]="selectedItem() === item.name"
+              role="button"
+              [attr.aria-label]="item.name"
+              (click)="selectedItem.set(item.name)"
+            >
+              <div
+                class="sidebar__nav-icon d-flex align-items-center justify-content-center flex-shrink-0"
+              >
+                <div class="sidebar__product-icon position-relative flex-shrink-0">
+                  @for (part of productIconParts; track part.cls) {
+                    <div class="icon-part-wrapper position-absolute" [ngClass]="part.cls">
+                      <img
+                        [src]="part.src"
+                        alt=""
+                        class="icon-part-img position-absolute d-block w-100 h-100"
+                      />
+                    </div>
+                  }
+                </div>
               </div>
+              <span class="sidebar__nav-label">{{ item.label }}</span>
             </div>
           }
         </li>
       }
     </ul>
-
   </nav>
 </aside>

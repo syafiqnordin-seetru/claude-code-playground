@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
 
 @Component({
@@ -9,15 +9,21 @@ import { NgClass } from '@angular/common';
   styleUrl: './sidebar.scss'
 })
 export class Sidebar {
+  isExpanded = signal(false);
+  selectedItem = signal<string | null>(null);
+
   readonly navItems = [
     {
       name: 'Apps',
+      label: 'All modules',
       icon: 'assets/sidebar/icon-apps.svg',
+      iconActive: 'assets/sidebar/icon-apps-active.svg',
       href: null,
       isProduct: false
     },
     {
       name: 'Project Management',
+      label: 'Project Management',
       icon: null,
       href: null,
       isProduct: true
