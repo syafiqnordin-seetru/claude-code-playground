@@ -1,0 +1,17 @@
+// =============================================================================
+// Global Color Variables
+// Usage: @use 'colors' as c; then reference c.$color-bg-app
+// Or:    @use 'colors' as *; then reference $color-bg-app directly
+// =============================================================================
+
+// Brand palette
+$color-brand-navy:      #4a5890;
+$color-brand-teal:      #009db6;
+$color-brand-blue:      #547fc3;
+$color-brand-dark-blue: #003056;
+
+// Backgrounds
+$color-bg-app: #e8ecf0;
+
+// Utility
+$color-white: #ffffff;

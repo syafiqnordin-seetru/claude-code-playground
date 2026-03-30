@@ -1,0 +1,117 @@
+@use '../../styles/colors' as *;
+
+// Design tokens from Figma
+$sidebar-width: 72px;
+$sidebar-gradient-from: $color-brand-navy;
+$sidebar-gradient-to: $color-brand-teal;
+$sidebar-gradient-stop: 45.714%;
+$sidebar-divider: $color-brand-blue;
+$sidebar-radius: 8px;
+$sidebar-shadow:
+  0px 15px 20px 10px rgba($color-brand-dark-blue, 0.1),
+  0px 20px 80px 30px rgba($color-brand-dark-blue, 0.15);
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.sidebar {
+  width: $sidebar-width;
+  background: linear-gradient(
+    to bottom,
+    $sidebar-gradient-from 0%,
+    $sidebar-gradient-to $sidebar-gradient-stop
+  );
+  border-radius: $sidebar-radius;
+  box-shadow: $sidebar-shadow;
+
+  // ── Decorative pattern ─────────────────────────────────────────────
+  &__pattern {
+    width: 280px;
+    height: 516px;
+    opacity: 0.4;
+    pointer-events: none;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: -554.26%;
+      width: 654.43%;
+      height: 236.69%;
+      max-width: none;
+    }
+  }
+
+  // ── Menu column ────────────────────────────────────────────────────
+  &__menu {
+    left: 12px;
+    width: 48px;
+  }
+
+  // ── Logo + divider ─────────────────────────────────────────────────
+  &__logo-link {
+    padding: 20px 0 16px 8px;
+    border-bottom: 1px solid $sidebar-divider;
+    cursor: pointer;
+  }
+
+  &__logo {
+    width: 32px;
+    height: 32px;
+    overflow: clip;
+  }
+
+  // Inner wrapper carries the Figma inset; img fills it completely
+  &__logo-inner {
+    inset: 0 9.79% 0 9.15%;
+
+    img {
+      max-width: none;
+    }
+  }
+
+  // ── Nav list ───────────────────────────────────────────────────────
+  &__nav-list {
+    gap: 6px;
+  }
+
+  &__nav-item {
+    width: 48px;
+    height: 48px;
+    border-radius: $sidebar-radius;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:hover {
+      background: rgba($color-white, 0.12);
+    }
+  }
+
+  // ── Composite product icon (7 SVG path fragments) ──────────────────
+  &__product-icon {
+    width: 24px;
+    height: 24px;
+    overflow: clip;
+
+    // Each wrapper div is positioned by its inset; the img fills it fully
+    .icon-part-wrapper {
+      &.part-1 { inset: 69.99% 56.66% 0.02% 23.34%; }
+      &.part-2 { top: 6.88%;  right: 50%;    bottom: 3.36%; left: 3.16%;  }
+      &.part-3 { inset: 69.99% 24.91% 0.02% 56.66%; }
+      &.part-4 { inset: 0.02%  3.16%  3.36% 27.26%; }
+      &.part-5 { top: 7.47%;  right: 50%;    bottom: 80.97%; left: 26.68%; }
+      &.part-6 { inset: 69.99% 65.88% 3.36% 25.50%; }
+      &.part-7 { inset: 69.99% 25.31% 3.55% 66.07%; }
+    }
+
+    .icon-part-img {
+      max-width: none;
+    }
+  }
+}
