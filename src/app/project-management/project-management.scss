@@ -1,69 +1,158 @@
 @use '../../styles/colors' as *;
 
-.pm-page {
-  padding: 2rem;
-  max-width: 1200px;
+.pm-header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .pm-header {
-  margin-bottom: 1.5rem;
-
-  &__title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: $color-brand-dark-blue;
-    margin-bottom: 0.25rem;
-  }
-
-  &__subtitle {
-    color: $color-text-muted;
-    margin-bottom: 0;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px 16px 16px 8px;
+  width: 100%;
 }
 
-.pm-stat-card {
-  border: 1px solid $color-border-card;
-  border-radius: 0.75rem;
-  box-shadow: 0 1px 4px rgba($color-shadow-base, 0.06);
+.pm-top-nav {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 40px;
+}
 
-  &__value {
-    color: $color-brand-dark-blue;
+// Gradient title
+.pm-title {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0;
+  background: linear-gradient(
+    131.39deg,
+    $color-brand-emerald-green 27.53%,
+    #1e889b 39.03%,
+    $color-brand-purple 72.62%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  white-space: nowrap;
+}
+
+// Right nav area
+.pm-nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+// AI icon button
+.pm-ai-btn {
+  position: relative;
+  display: block;
+  width: 48px;
+  height: 48px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
   }
 
   &__icon {
-    line-height: 1;
+    position: absolute;
+    inset: 16.67%;
+    width: 66.66%;
+    height: 66.66%;
+    display: block;
   }
 }
 
-.pm-status-badge {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-  border-radius: 999px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: capitalize;
+// Icon buttons group
+.pm-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-  &--in-progress {
-    background-color: rgba($color-brand-teal, 0.12);
-    color: darken($color-brand-teal, 10%);
-  }
+.pm-icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
 
-  &--planning {
-    background-color: rgba($color-brand-navy, 0.12);
-    color: $color-brand-navy;
-  }
-
-  &--review {
-    background-color: rgba($color-brand-purple, 0.12);
-    color: $color-brand-purple;
-  }
-
-  &--completed {
-    background-color: rgba($color-status-success, 0.12);
-    color: $color-status-success-dark;
+  > img {
+    width: 24px;
+    height: 24px;
+    display: block;
   }
 }
 
-.progress-bar {
-  background-color: $color-brand-teal;
+// Bell with notification dot
+.pm-bell {
+  position: relative;
+  width: 24px;
+  height: 24px;
+
+  img:first-child {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__dot {
+    position: absolute;
+    top: -2.5px;
+    right: -1.5px;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+// Avatar
+.pm-avatar {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  &__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  &__initial {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Museo Sans', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.28px;
+    color: $color-text-muted;
+    text-align: center;
+  }
 }
