@@ -89,3 +89,51 @@ You can use `<style>` elements directly in a component's template. View encapsul
 ## External Styles
 
 Using `<link>` or `@import` in CSS is treated as external styles. **External styles are not affected by emulated view encapsulation.**
+
+## Project Color Token System
+
+All colors in this project must be defined as named variables in `src/styles/_colors.scss`. **Never write raw hex or rgba values directly in a component `.scss` file.**
+
+### How to use
+
+At the top of every component `.scss`, import the color file with a wildcard:
+
+```scss
+@use '../../styles/colors' as *;
+```
+
+Then reference any token by name:
+
+```scss
+.my-component {
+  color: $color-text-muted;
+  border: 1px solid $color-border-card;
+  box-shadow: 0 1px 4px rgba($color-shadow-base, 0.06);
+  background-color: rgba($color-status-success, 0.12);
+}
+```
+
+### Adding a new color
+
+If the color you need does not exist in `_colors.scss`, add it there first under the matching section, then reference the new variable:
+
+```scss
+// src/styles/_colors.scss  — add new token
+$color-text-muted: #6c757d;   // ← new
+
+// src/app/my-component/my-component.scss  — reference by variable
+color: $color-text-muted;     // ✅ correct
+color: #6c757d;               // ❌ never do this
+```
+
+### Token naming conventions
+
+| Category | Pattern | Example |
+|---|---|---|
+| Brand palette | `$color-brand-<name>` | `$color-brand-teal` |
+| Backgrounds | `$color-bg-<name>` | `$color-bg-app` |
+| Text | `$color-text-<name>` | `$color-text-muted` |
+| Borders | `$color-border-<name>` | `$color-border-card` |
+| Shadows | `$color-shadow-<name>` | `$color-shadow-base` |
+| Status/semantic | `$color-status-<name>` | `$color-status-success` |
+| Utility | `$color-<name>` | `$color-white` |

@@ -154,10 +154,47 @@ Before marking complete, validate the final UI against the Figma screenshot.
 - When a matching component exists, extend it rather than creating a new one
 - Document any new components added to the design system
 
+### SCSS Color Tokens (MANDATORY)
+
+**Never write raw hex or rgba values in any `.scss` file.** Every color must come from `src/styles/_colors.scss`.
+
+**Required workflow for every color encountered in Figma:**
+
+1. Open `src/styles/_colors.scss` and check if a variable with the right semantic meaning already exists
+2. **If yes** — use that variable directly (e.g. `$color-brand-teal`)
+3. **If no** — add a new named token to `_colors.scss` under the appropriate section, then reference the new variable in the component SCSS
+
+**Naming convention for new tokens:**
+
+| Category | Pattern | Example |
+|---|---|---|
+| Brand palette | `$color-brand-<name>` | `$color-brand-teal` |
+| Backgrounds | `$color-bg-<name>` | `$color-bg-app` |
+| Text | `$color-text-<name>` | `$color-text-muted` |
+| Borders | `$color-border-<name>` | `$color-border-card` |
+| Shadows | `$color-shadow-<name>` | `$color-shadow-base` |
+| Status/semantic | `$color-status-<name>` | `$color-status-success` |
+| Utility | `$color-<name>` | `$color-white` |
+
+**For `rgba()` shadows** — store the base color as solid hex in `_colors.scss`, then apply opacity inline:
+```scss
+// _colors.scss
+$color-shadow-base: #000000;
+
+// component.scss
+box-shadow: 0 1px 4px rgba($color-shadow-base, 0.06);
+```
+
+**Import the color file at the top of every component SCSS:**
+```scss
+@use '../../styles/colors' as *;
+```
+
+Adjust the relative path depth to match the component's location under `src/app/`.
+
 ### Code Quality
 
 - Avoid hardcoded values - extract to constants or design tokens
-- **Never hardcode color values in SCSS files.** All colors must use variables from `src/styles/_colors.scss`. If a Figma color has no existing variable, add it there first, then reference the variable in the component SCSS.
 - Keep components composable and reusable
 - Add TypeScript types for component props
 - Include JSDoc comments for exported components

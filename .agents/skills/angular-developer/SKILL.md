@@ -110,6 +110,35 @@ When implementing styling and animations in Angular, consult the following refer
 - **Angular Animations**: Using native CSS (recommended) or the legacy DSL for dynamic effects. Read [angular-animations.md](references/angular-animations.md)
 - **Styling components**: Best practices for component styles and encapsulation. Read [component-styling.md](references/component-styling.md)
 
+### SCSS Color Tokens (MANDATORY)
+
+**Never write raw hex or rgba color values in any `.scss` file.** All colors must be declared as named variables in `src/styles/_colors.scss` and referenced by variable name.
+
+**Workflow:**
+
+1. Check `src/styles/_colors.scss` for an existing variable that matches the color's semantic meaning
+2. If a match exists, use that variable (e.g. `$color-brand-teal`)
+3. If no match exists, add a new token to `_colors.scss` under the correct section, then use the variable
+
+**Token naming convention:**
+
+| Category | Pattern | Example |
+|---|---|---|
+| Brand palette | `$color-brand-<name>` | `$color-brand-navy` |
+| Backgrounds | `$color-bg-<name>` | `$color-bg-app` |
+| Text | `$color-text-<name>` | `$color-text-muted` |
+| Borders | `$color-border-<name>` | `$color-border-card` |
+| Shadows | `$color-shadow-<name>` | `$color-shadow-base` |
+| Status/semantic | `$color-status-<name>` | `$color-status-success` |
+| Utility | `$color-<name>` | `$color-white` |
+
+**Import at the top of each component `.scss`:**
+```scss
+@use '../../styles/colors' as *;
+```
+
+Adjust the relative path to match the component's depth under `src/app/`.
+
 ## Testing
 
 When writing or updating tests, consult the following references based on the task:

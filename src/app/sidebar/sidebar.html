@@ -34,17 +34,15 @@
             <a
               class="sidebar__nav-item d-flex align-items-center flex-shrink-0 text-decoration-none"
               [class.justify-content-center]="!isExpanded()"
-              [class.is-active]="selectedItem() === item.name"
-              [href]="item.href"
-              target="_self"
+              [class.is-active]="isActive(item.route)"
+              [routerLink]="item.route"
               [attr.aria-label]="item.name"
-              (click)="selectedItem.set(item.name); $event.preventDefault()"
             >
               <div
                 class="sidebar__nav-icon d-flex align-items-center justify-content-center flex-shrink-0"
               >
                 <img
-                  [src]="(selectedItem() === item.name && item.iconActive) ? item.iconActive : item.icon"
+                  [src]="isActive(item.route) && item.iconActive ? item.iconActive : item.icon"
                   [alt]="item.name"
                   width="24"
                   height="24"
@@ -56,10 +54,10 @@
             <div
               class="sidebar__nav-item d-flex align-items-center flex-shrink-0"
               [class.justify-content-center]="!isExpanded()"
-              [class.is-active]="selectedItem() === item.name"
+              [class.is-active]="isActive(item.route)"
               role="button"
               [attr.aria-label]="item.name"
-              (click)="selectedItem.set(item.name)"
+              (click)="navigate(item.route)"
             >
               <div
                 class="sidebar__nav-icon d-flex align-items-center justify-content-center flex-shrink-0"

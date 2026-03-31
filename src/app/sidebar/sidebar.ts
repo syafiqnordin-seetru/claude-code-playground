@@ -1,16 +1,27 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { NgClass } from '@angular/common';
+import { Router, RouterLink, NavigationEnd } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass, RouterLink],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.scss'
+  styleUrl: './sidebar.scss',
 })
 export class Sidebar {
   isExpanded = signal(false);
-  selectedItem = signal<string | null>(null);
+  private router = inject(Router);
+
+  currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((e): e is NavigationEnd => e instanceof NavigationEnd),
+      map((e) => e.urlAfterRedirects),
+    ),
+    { initialValue: this.router.url },
+  );
 
   readonly navItems = [
     {
@@ -18,16 +29,16 @@ export class Sidebar {
       label: 'All modules',
       icon: 'assets/sidebar/icon-apps.svg',
       iconActive: 'assets/sidebar/icon-apps-active.svg',
-      href: null,
-      isProduct: false
+      route: '/' as string | null,
+      isProduct: false,
     },
     {
       name: 'Project Management',
       label: 'Project Management',
       icon: null,
-      href: null,
-      isProduct: true
-    }
+      route: '/project-management' as string | null,
+      isProduct: true,
+    },
   ];
 
   readonly productIconParts = [
@@ -39,4 +50,16 @@ export class Sidebar {
     { src: 'assets/sidebar/icon-project-part-6.svg', cls: 'part-6' },
     { src: 'assets/sidebar/icon-project-part-7.svg', cls: 'part-7' },
   ];
+
+  isActive(route: string | null): boolean {
+    if (!route) return false;
+    if (route === '/') return this.currentUrl() === '/';
+    return this.currentUrl().startsWith(route);
+  }
+
+  navigate(route: string | null): void {
+    if (route) {
+      this.router.navigate([route]);
+    }
+  }
 }

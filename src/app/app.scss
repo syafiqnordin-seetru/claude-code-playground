@@ -11,10 +11,22 @@
 
 .app-layout {
   padding: 12px;
-  gap: 12px;
   box-sizing: border-box;
+  position: relative;
+}
+
+app-sidebar {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  bottom: 12px;
+  z-index: 10;
 }
 
 .app-content {
   min-width: 0;
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: calc(72px + 12px); // collapsed sidebar width + gap
+  overflow-y: auto;
 }

@@ -1,0 +1,69 @@
+@use '../../styles/colors' as *;
+
+.pm-page {
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.pm-header {
+  margin-bottom: 1.5rem;
+
+  &__title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: $color-brand-dark-blue;
+    margin-bottom: 0.25rem;
+  }
+
+  &__subtitle {
+    color: $color-text-muted;
+    margin-bottom: 0;
+  }
+}
+
+.pm-stat-card {
+  border: 1px solid $color-border-card;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 4px rgba($color-shadow-base, 0.06);
+
+  &__value {
+    color: $color-brand-dark-blue;
+  }
+
+  &__icon {
+    line-height: 1;
+  }
+}
+
+.pm-status-badge {
+  display: inline-block;
+  padding: 0.25em 0.75em;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &--in-progress {
+    background-color: rgba($color-brand-teal, 0.12);
+    color: darken($color-brand-teal, 10%);
+  }
+
+  &--planning {
+    background-color: rgba($color-brand-navy, 0.12);
+    color: $color-brand-navy;
+  }
+
+  &--review {
+    background-color: rgba($color-brand-purple, 0.12);
+    color: $color-brand-purple;
+  }
+
+  &--completed {
+    background-color: rgba($color-status-success, 0.12);
+    color: $color-status-success-dark;
+  }
+}
+
+.progress-bar {
+  background-color: $color-brand-teal;
+}
