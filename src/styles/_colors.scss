@@ -13,18 +13,35 @@ $color-brand-dark-blue:     #003056;
 $color-brand-purple:        #763f98;
 
 // Backgrounds
-$color-bg-app: #e8ecf0;
+$color-bg-app:        #e8ecf0;
+$color-bg-milestones: #dde4ee;
+$color-bg-delayed:    #dae1ea;
 
 // Utility
 $color-white: #ffffff;
 
 // Text
 $color-text-muted: #6c757d;
+$color-text-dark:  #333333;
+$color-text-grey:  #999999;
 
 // Borders & Shadows
-$color-border-card:  #e0e6ef;
-$color-shadow-base:  #000000;   // used with rgba() for box-shadows
+$color-border-card:     #e0e6ef;
+$color-border-divider:  #e0e0e0;
+$color-shadow-base:     #000000;   // used with rgba() for box-shadows
 
 // Status
 $color-status-success:      #28a745;
 $color-status-success-dark: #1e7e34;
+
+// Chart series
+$color-chart-mr1:       #8979ff;
+$color-chart-mr2:       #ff928a;
+$color-chart-mr3:       #3cc3df;
+$color-chart-mr4:       #ffae4c;
+$color-chart-mr5:       #537ff1;
+$color-chart-execution: #de53f1;
+
+// Legend & chart axis
+$color-legend-text: #312e2a;
+$color-chart-axis:  #000000;

@@ -1,0 +1,104 @@
+@use '../../../styles/colors' as *;
+
+.pm-overview__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.pm-overview__title {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0.2px;
+  color: $color-text-dark;
+  margin: 0;
+}
+
+.pm-overview__date {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+  color: $color-text-grey;
+}
+
+.pm-kpi-container {
+  display: flex;
+  align-items: stretch;
+}
+
+.pm-kpi__card {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 88px;
+  padding: 20px;
+  margin: 8px;
+  background: $color-white;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px 0 rgba($color-brand-dark-blue, 0.08);
+  cursor: default;
+  text-align: left;
+
+  &:not(.pm-kpi__card--static) {
+    cursor: pointer;
+  }
+}
+
+.pm-kpi__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.pm-kpi__label-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pm-kpi__label {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: $color-text-dark;
+  white-space: nowrap;
+}
+
+.pm-kpi__info-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.pm-kpi__value {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  color: $color-text-dark;
+}
+
+.pm-kpi__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  flex-shrink: 0;
+
+  img {
+    width: 32px;
+    height: 32px;
+  }
+}

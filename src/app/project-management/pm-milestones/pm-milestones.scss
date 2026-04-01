@@ -1,0 +1,125 @@
+@use '../../../styles/colors' as *;
+
+.pm-milestones__container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin: 8px 0;
+  padding: 16px 48px;
+  border-radius: 16px;
+  background: rgba($color-bg-milestones, 0.8);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  overflow: hidden;
+}
+
+.pm-milestones__nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 100px;
+  background: $color-brand-purple;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 1;
+
+  img {
+    width: 18px;
+    height: 18px;
+    display: block;
+  }
+
+  &--left {
+    left: 8px;
+  }
+
+  &--right {
+    right: 8px;
+
+    img {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.pm-milestones__cards {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.pm-milestone-card {
+  flex-shrink: 0;
+  width: 192px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  background: $color-white;
+  border: 1px solid $color-white;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px 0 rgba($color-brand-dark-blue, 0.08);
+  cursor: default;
+
+  &--clickable {
+    cursor: pointer;
+  }
+}
+
+.pm-milestone-card__header {
+  padding-bottom: 4px;
+  border-bottom: 0.5px solid $color-border-divider;
+}
+
+.pm-milestone-card__title {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.16px;
+  color: $color-text-dark;
+}
+
+.pm-milestone-card__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.pm-milestone-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 8px;
+  border-radius: 6px;
+
+  &--delayed {
+    background: rgba($color-bg-delayed, 0.5);
+  }
+}
+
+.pm-milestone-row__label,
+.pm-milestone-row__value {
+  font-family: 'Museo Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.28px;
+  color: $color-text-dark;
+}
+
+.pm-milestone-row__value {
+  white-space: nowrap;
+  flex-shrink: 0;
+}

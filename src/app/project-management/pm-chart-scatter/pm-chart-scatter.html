@@ -1,0 +1,51 @@
+<div class="chart-card">
+  <div class="chart-card__header">
+    <h3 class="chart-card__title">{{ config().title }}</h3>
+    <p class="chart-card__subtitle">{{ config().subtitle }}</p>
+  </div>
+  <div class="chart-card__body">
+    <div class="chart-card__filters">
+      @for (filter of config().filters; track filter) {
+        <button class="chart-filter-btn">
+          {{ filter }}
+          <img src="assets/project-management/icon-chevron-down.svg" class="chart-filter-btn__icon" alt="" />
+        </button>
+      }
+    </div>
+
+    <dx-chart class="chart-card__chart" [dataSource]="flatData()">
+      <dxo-common-series-settings type="scatter" argumentField="x" valueField="y">
+        <dxo-point [size]="8" symbol="circle"></dxo-point>
+      </dxo-common-series-settings>
+      <dxo-series-template nameField="series" [customizeSeries]="customizeSeries">
+      </dxo-series-template>
+      <dxo-argument-axis [wholeRange]="{ endValue: config().xMax }" [tickInterval]="config().xTickInterval">
+        <dxo-title [text]="config().xLabel"></dxo-title>
+        @if (config().xConstantLine !== undefined) {
+          <dxi-constant-line [value]="config().xConstantLine!" dashStyle="dash" color="#999" [width]="1">
+            <dxo-label [visible]="false"></dxo-label>
+          </dxi-constant-line>
+        }
+      </dxo-argument-axis>
+      <dxi-value-axis [wholeRange]="{ endValue: config().yMax }">
+        <dxo-title [text]="config().yLabel"></dxo-title>
+        @if (config().yConstantLine !== undefined) {
+          <dxi-constant-line [value]="config().yConstantLine!" dashStyle="solid" color="#999" [width]="1">
+            <dxo-label [visible]="false"></dxo-label>
+          </dxi-constant-line>
+        }
+      </dxi-value-axis>
+      <dxo-legend [visible]="false"></dxo-legend>
+      <dxo-tooltip [enabled]="true"></dxo-tooltip>
+    </dx-chart>
+
+    <div class="chart-legend">
+      @for (s of config().series; track s.name) {
+        <div class="chart-legend__item">
+          <span class="chart-legend__dot" [style.background-color]="s.color"></span>
+          <span class="chart-legend__label">{{ s.name }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</div>

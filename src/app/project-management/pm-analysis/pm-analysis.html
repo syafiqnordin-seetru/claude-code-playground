@@ -1,0 +1,25 @@
+<div class="pm-analysis">
+  <button class="pm-analysis__header" (click)="toggleCollapse()">
+    <h2 class="pm-analysis__title">Project analysis</h2>
+    <div class="pm-analysis__collapse-btn">
+      <span>{{ collapsed() ? 'Expand' : 'Collapse' }}</span>
+      <img
+        src="assets/project-management/icon-chevron-up.svg"
+        alt=""
+        class="pm-analysis__chevron"
+        [class.pm-analysis__chevron--rotated]="collapsed()"
+      />
+    </div>
+  </button>
+
+  @if (!collapsed()) {
+    <div class="pm-analysis__grid">
+      <app-pm-chart-scatter [config]="scatterCharts[0]" />
+      <app-pm-chart-scatter [config]="scatterCharts[1]" />
+      <app-pm-chart-radar   [config]="radarHigh" />
+      <app-pm-chart-scatter [config]="scatterCharts[2]" />
+      <app-pm-chart-scatter [config]="scatterCharts[3]" />
+      <app-pm-chart-radar   [config]="radarLow" />
+    </div>
+  }
+</div>

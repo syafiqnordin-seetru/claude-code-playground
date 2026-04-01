@@ -1,0 +1,39 @@
+<div class="pm-milestones">
+  <div class="pm-milestones__container">
+    <button class="pm-milestones__nav pm-milestones__nav--left"
+            aria-label="Scroll left"
+            (click)="scrollMilestones('left')">
+      <img src="assets/project-management/icon-chevron-left.svg" alt="" />
+    </button>
+
+    <div class="pm-milestones__cards" #milestoneScroll>
+      @for (card of milestones; track card.title) {
+        <div class="pm-milestone-card" [class.pm-milestone-card--clickable]="card.clickable">
+          <div class="pm-milestone-card__header">
+            <span class="pm-milestone-card__title">{{ card.title }}</span>
+          </div>
+          <div class="pm-milestone-card__rows">
+            <div class="pm-milestone-row">
+              <span class="pm-milestone-row__label">Total</span>
+              <span class="pm-milestone-row__value">{{ card.total }}</span>
+            </div>
+            <div class="pm-milestone-row pm-milestone-row--delayed">
+              <span class="pm-milestone-row__label">Delayed</span>
+              <span class="pm-milestone-row__value">{{ card.delayed }}</span>
+            </div>
+            <div class="pm-milestone-row">
+              <span class="pm-milestone-row__label">On track</span>
+              <span class="pm-milestone-row__value">{{ card.onTrack }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <button class="pm-milestones__nav pm-milestones__nav--right"
+            aria-label="Scroll right"
+            (click)="scrollMilestones('right')">
+      <img src="assets/project-management/icon-chevron-left.svg" alt="" />
+    </button>
+  </div>
+</div>
